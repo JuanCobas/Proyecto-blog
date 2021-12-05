@@ -10,7 +10,7 @@
       </a>
       <p class="post-meta">
           Posteado por
-          <a href="#">{{ object.autor }}</a>
+          <a href="{% url 'user-post' object.autor.username %}">{{ object.autor }}</a>
           <small class="text-muted"> {{ object.date_posted|date:"F d, Y" }} </small>
           {% if object.autor == user %}
             <div>
