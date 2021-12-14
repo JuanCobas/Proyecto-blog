@@ -12,6 +12,8 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     
+
+    
     def __str__(self):
         return self.titulo
     
@@ -19,7 +21,7 @@ class Post(models.Model):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
 class Comment(models.Model):
-    username = models.CharField(max_length=100)
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     content = models.TextField()
     date_commented = models.DateTimeField(auto_now_add=True)

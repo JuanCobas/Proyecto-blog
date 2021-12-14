@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from .forms import CreateCommentForm
+
 from .models import Post, Comment
 
 
@@ -19,7 +19,7 @@ class PostListView(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
-    paginate_by = 5
+    paginate_by = 4
 
 
 class UserPostListView(ListView):
@@ -38,7 +38,7 @@ class PostDetailView(DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['titulo', 'contenido']
-
+    
     def form_valid(self, form):
         form.instance.autor = self.request.user
         return super().form_valid(form)
@@ -46,9 +46,10 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
-    form_class = CreateCommentForm
+    fields = ['content']
     
     def form_valid(self, form):
+        form.instance.username = self.request.user
         form.instance.post_id = self.kwargs['pk']
         return super().form_valid(form)
         
