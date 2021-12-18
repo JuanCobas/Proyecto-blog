@@ -21,6 +21,7 @@ def PostListView(request):
         return render(request, 'blog/home.html', context)
     #return render(request, 'blog/home.html', context)  """
 
+#Vista que maneja la Home
 
 class PostListView(ListView):
     model = Post
@@ -30,7 +31,7 @@ class PostListView(ListView):
     paginate_by = 4
     
 
-
+#Vista que muestra los post por Usuario
 
 class UserPostListView(ListView):
     model = Post
@@ -54,6 +55,7 @@ class UserPostListView(ListView):
     def get_queryset(self):
         categoria = get_object_or_404(Post, categoria = self.kwargs.get('categoria'))
         return Post.objects.filter(categoria=categoria).order_by('-date_posted')"""
+#Vista que muestra los post por Categoria
 
 def CategoriaPostListView(request, categoria):
 	posts = Post.objects.filter(categoria=categoria)
@@ -61,6 +63,8 @@ def CategoriaPostListView(request, categoria):
         'categoria': categoria,
 		'posts': posts}
 	return render(request,'blog/categoria_post.html', context)
+
+#Vista que muestra los post por Fecha
 
 def DatePostListView(request):
     date = request.GET.get('date','')
@@ -71,6 +75,8 @@ def DatePostListView(request):
         'posts': posts}
     return render(request,'blog/date_post.html', context)
 
+#Vista que muestra los post con mas comentarios, solo los primeros 20
+
 def TopPostListView(request):
     posts = Post.objects.raw('SELECT *, (SELECT COUNT(*) FROM blog_comment as bc WHERE bp.id = bc.post_id) as cantidad_comentarios FROM blog_post as bp ORDER BY cantidad_comentarios DESC LIMIT 20')
     context = {
@@ -78,10 +84,12 @@ def TopPostListView(request):
     return render(request,'blog/top_posts.html', context)
 
 
-
+#Vista que muestra los post
 
 class PostDetailView(DetailView):
     model = Post
+
+#Vista que maneja la creacion de post
 
 class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = ('blog.add_post')
@@ -92,7 +100,7 @@ class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         form.instance.autor = self.request.user
         return super().form_valid(form)
     
-
+#Vista que maneja la creacion de comentarios
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
@@ -104,7 +112,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
         
 
-
+#Vista que maneja el update de post
     
 
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin, UpdateView):
@@ -121,6 +129,8 @@ class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin, UpdateView):
             return True
         else:
             return False
+
+#Vista que maneja el borrado de post
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
