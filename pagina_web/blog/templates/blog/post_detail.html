@@ -1,11 +1,17 @@
 {% extends 'blog/base.html' %}
 
+{% block title %}
+<title>Post - {{ object.titulo }}</title>      
+{% endblock %}
+
+
 {% block content %}
 <div class="container">
     <img class="rounded-circle article-image" src="{{ object.autor.profile.image.url }}" alt="">
     
         <h2 class="post-title">{{ object.titulo }}</h2>
         <h3 class="post-subtitle">{{ object.contenido }}</h3>
+        <p class="post-meta">Categoria: {{ object.categoria }}</p>
     
     <p class="post-meta">
         Posteado por

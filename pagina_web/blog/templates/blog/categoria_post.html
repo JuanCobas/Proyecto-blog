@@ -1,11 +1,11 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
-<title>Post de {{ view.kwargs.username }}</title>      
+<title>Post - Categoria: {{ categoria }}</title>      
 {% endblock %}
 
 {% block content %}
-  <h1 class="mb-3">Post de {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+  <h1 class="mb-3">Posts sobre {{ categoria }}</h1>
   {% for post in posts %}
     <div class="post-preview">
       <img class="rounded-circle article-image" src="{{ post.autor.profile.image.url }}" alt="">

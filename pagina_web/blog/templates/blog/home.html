@@ -1,4 +1,8 @@
 {% extends 'blog/base.html' %}
+
+{% block title %}
+<title>Home</title>      
+{% endblock %}
 {% block content %}
     {% for post in posts %}
         <div>
@@ -12,6 +16,7 @@
             </div>
             
             <h7 class="post-subtitle">{{ post.contenido }}</h3>
+            <p class="post-meta">Categoria: {{ post.categoria }}</p>
             
             <p class="post-meta">
                 Posteado por
