@@ -2974,7 +2974,7 @@ textarea.form-control-lg {
           user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: 1rem 1.75rem;
+  padding: 0.5rem;
   font-size: 0.875rem;
   border-radius: 0;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3028,30 +3028,24 @@ textarea.form-control-lg {
 
 .btn-secondary {
   color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
 }
 .btn-secondary:hover {
-  color: #fff;
-  background-color: #5c636a;
-  border-color: #565e64;
+  color: rgb(213, 229, 155);
 }
 .btn-check:focus + .btn-secondary, .btn-secondary:focus {
-  color: #fff;
-  background-color: #5c636a;
-  border-color: #565e64;
+  color: rgb(213, 229, 155);
+
   box-shadow: 0 0 0 0.25rem rgba(130, 138, 145, 0.5);
 }
 .btn-check:checked + .btn-secondary, .btn-check:active + .btn-secondary, .btn-secondary:active, .btn-secondary.active, .show > .btn-secondary.dropdown-toggle {
-  color: #fff;
-  background-color: #565e64;
-  border-color: #51585e;
+  color: rgb(213, 229, 155);
+
 }
 .btn-check:checked + .btn-secondary:focus, .btn-check:active + .btn-secondary:focus, .btn-secondary:active:focus, .btn-secondary.active:focus, .show > .btn-secondary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.25rem rgba(130, 138, 145, 0.5);
 }
 .btn-secondary:disabled, .btn-secondary.disabled {
-  color: #fff;
+  color: rgb(213, 229, 155);
   background-color: #6c757d;
   border-color: #6c757d;
 }
@@ -11120,12 +11114,9 @@ footer {
 header.masthead {
   position: relative;
   margin-bottom: 3rem;
-  padding-top: calc(8rem + 57px);
-  padding-bottom: 8rem;
-  background: no-repeat center center;
-  background-color: #6c757d;
-  background-size: cover;
-  background-attachment: scroll;
+  padding-top: calc(2rem + 57px);
+  padding-bottom: 2rem;
+  background-image: linear-gradient(#44cc00,#ccffb3);
 }
 header.masthead:before {
   content: "";
@@ -11135,7 +11126,7 @@ header.masthead:before {
   right: 0;
   bottom: 0;
   background-color: #212529;
-  opacity: 0.5;
+  opacity: 0.3;
 }
 header.masthead .page-heading,
 header.masthead .post-heading,
@@ -11184,10 +11175,7 @@ header.masthead .post-heading .meta a {
   color: #fff;
 }
 @media (min-width: 992px) {
-  header.masthead {
-    padding-top: 12.5rem;
-    padding-bottom: 12.5rem;
-  }
+
   header.masthead .page-heading h1, header.masthead .page-heading .h1,
 header.masthead .site-heading h1,
 header.masthead .site-heading .h1 {
@@ -11240,6 +11228,16 @@ header.masthead .site-heading .h1 {
 }
 .post-preview > .post-meta > a {
   text-decoration: none;
+}
+
+input.post-dateinput {
+  height: 22px;
+  margin-top: 20px;
+  
+}
+
+img.rounded-circle.article-image {
+height: 150px;
 }
 @media (min-width: 992px) {
   .post-preview > a > .post-title {
